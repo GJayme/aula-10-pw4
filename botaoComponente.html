@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos React</title>
+</head>
+<body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<div id="posicao1"></div>
+
+<script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                nome: 'Danilo',
+                mensagem: 'Bom dia'
+            };
+        }
+
+        trocaMensagem = () => {
+            console.log('Mensagem alterada');
+            this.setState({
+                mensagem: 'Boa tarde',
+                idade: 30
+            });
+        };
+
+        render() {
+            return (
+                <div>
+                    <h3>Exemplo React</h3>
+                    <BotaoComponente aoClicar={this.trocaMensagem}/>
+                    <p>{this.state.mensagem}, {this.state.nome}</p>
+                    <p>Idade: {this.state.idade}</p>
+                </div>
+            );
+        }
+    }
+
+    class BotaoComponente extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
+        render() {
+            return (
+                <button onClick={this.props.aoClicar} >Trocar Mensagem</button>
+            );
+        }
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('posicao1'));
+</script>
+
+</body>
+</html>

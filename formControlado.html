@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos React</title>
+</head>
+<body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<div id="posicao1"></div>
+
+<script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                nome: '',
+                idade: ''
+            };
+        }
+
+        trataAlteracao = (event) => {
+            if (event.target.name === 'txtNome') {
+                this.setState({nome: event.target.value});
+            }
+            if (event.target.name === 'txtIdade') {
+                this.setState({idade: event.target.value});
+            }
+            console.log(event.target);
+        };
+
+        trataSubmissao = (event) => {
+            event.preventDefault();
+            console.log('Submetendo o formulário');
+            console.log(this.state);
+        };
+
+        render() {
+            return (
+                <div>
+                    <form onSubmit={this.trataSubmissao}>
+                        <label>Nome: <input type="text" name="txtNome" value={this.state.nome}
+                                            onChange={this.trataAlteracao}/></label>
+                        <label>Idade: <input type="text" name="txtIdade" value={this.state.idade}
+                                             onChange={this.trataAlteracao}/></label>
+                        <input type="submit" value="Enviar!"/>
+                    </form>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('posicao1'));
+</script>
+
+</body>
+</html>

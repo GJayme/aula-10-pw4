@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos React</title>
+</head>
+<body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<div id="posicao1"></div>
+
+<script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.nome = React.createRef();
+        }
+
+        trataEnvio = (event) => {
+            event.preventDefault();
+            alert(`Nome digitado: ${this.nome.current.value}`);
+        };
+
+        render() {
+            return (
+                <div>
+                    <form onSubmit={this.trataEnvio}>
+                        <label>Nome: <input type="text" name="txtNome" ref={this.nome}/></label>
+                        <input type="submit" value="Enviar!"/>
+                    </form>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('posicao1'));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos React</title>
+</head>
+<body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<div id="posicao1"></div>
+
+<script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                periodo: 'manhã'
+            };
+        }
+
+        alterna = () => {
+            this.setState({
+                periodo: 'tarde'
+            });
+        };
+
+        render() {
+            // If, else com multiplos returns
+
+            // if (this.state.periodo === "manhã") {
+            //     return (
+            //         <div>
+            //             <h3>Bom dia!</h3>
+            //             <button onClick={this.alterna}>Troca Mesagem</button>
+            //         </div>)
+            // } else {
+            //     return <h3>Boa tarde!</h3>
+            // }
+
+            // Retorno por variável
+
+            // let resposta;
+            // if (this.state.periodo === 'manhã') {
+            //     resposta = (<div><h3>Bom dia!</h3>
+            //         <button onClick={this.alterna}>Troca Mesagem</button>
+            //     </div>);
+            // } else {
+            //     resposta = (<h3>Boa tarde!</h3>);
+            // }
+            // return resposta;
+
+            // Operador ternário
+
+            // return(
+            //     (this.state.periodo === "manhã" ?
+            //         (<div><h3>Bom dia!</h3><button onClick={this.alterna}>Troca Mesagem</button></div>) :
+            //         <h3>Boa tarde!</h3>)
+            // )
+
+            // Short Circuit
+            return(
+                <div>
+                    {(this.state.periodo === "manhã") && <h3>Bom dia!</h3>}
+                    {!(this.state.periodo === "manhã") && <h3>Boa tarde!</h3>}
+                    <button onClick={this.alterna}>Troca Mesagem</button>
+                </div>
+            )
+
+        }
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('posicao1'));
+</script>
+
+</body>
+</html>
